@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
 const User = mongoose.model('User', userSchema);
 
 const userValidationSchema = Joi.object({
-  username: Joi.string()
+  name: Joi.string()
     .required()
     .messages({
       'string.empty': 'Username is required',

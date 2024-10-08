@@ -1,5 +1,5 @@
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-const { User} = require('../models/user');
+const { User } = require('../models/user');
 const passport = require("passport");
 
 passport.use(new GoogleStrategy({
@@ -8,21 +8,26 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:5000/auth/google/callback"
   },
   async function(accessToken, refreshToken, profile, cb) {
-    try{
+    try {
+      // Check for an existing user by email
       let user = await User.findOne({ email: profile.emails[0].value });
 
-      if(!user){
+      if (!user) {
+        // If the user doesn't exist, create a new one
         user = new User({
           name: profile.displayName,
-          email:  profile.emails[0].value,
+          email: profile.emails[0].value,
+          // Optionally add other fields here (e.g., password, city)
         });
 
         await user.save();
       }
+
+      // Pass the user to the next middleware
       cb(null, user);
-    }
-    catch(err){
-      cb(err,false);
+    } catch (err) {
+      console.error('Error during user registration:', err);
+      cb(err, false); // Handle error
     }
   }
 ));
@@ -32,8 +37,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  let user = await User.findOne({ _id: id });
-  done(null, user);
+  try {
+    let user = await User.findOne({ _id: id });
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
 });
 
 module.exports = passport;
