@@ -27,12 +27,13 @@ const userSchema = new mongoose.Schema(
 
 const User = mongoose.model('User', userSchema);
 
+// Validation schema without username
 const userValidationSchema = Joi.object({
   name: Joi.string()
     .required()
     .messages({
-      'string.empty': 'Username is required',
-      'any.required': 'Username is required'
+      'string.empty': 'Name is required',
+      'any.required': 'Name is required'
     }),
 
   email: Joi.string()

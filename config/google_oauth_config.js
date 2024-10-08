@@ -17,7 +17,7 @@ passport.use(new GoogleStrategy({
         user = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
-          // Optionally add other fields here (e.g., password, city)
+          // No username field here
         });
 
         await user.save();
