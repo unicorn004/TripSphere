@@ -3,9 +3,9 @@ const { Destination } = require('../models/destination');
 
 const addDestination = async (request, response) => {
     try {
-        const { name, uniqueID, image } = request.body;
+        const { name, uniqueID, image, airportCode } = request.body;
         const destination = await Destination.create({
-            name, uniqueID, image
+            name, uniqueID, image, airportCode
         });
         return response.status(201).json({
             success: true,
