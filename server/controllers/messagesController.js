@@ -20,7 +20,7 @@ const addMessage = async (request, response) => {
 const getMessages = async (request, response) => {
     try {
         const userId = request.headers.userid;
-        const messages = await Messages.find({ userId }).sort({ createdAt: 1 });
+        const messages = await Messages.find({ userId }).sort({ createdAt: -1 });
         return response.status(200).json({
             success: true,
             messages,
@@ -36,7 +36,7 @@ const getMessages = async (request, response) => {
 
 const deleteMessages = async (request, response) => {
     try {
-        const userId = request.headers.userid
+        const { userId } = request.body;
         const messages = await Messages.deleteMany({ userId });
         return response.status(200).json({
             success: true,
