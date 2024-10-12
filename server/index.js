@@ -32,10 +32,12 @@ const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const userRouter = require('./routes/userRoutes');
 const destinationRouter = require('./routes/destinationRoutes');
+const messageRouter = require('./routes/messageRoutes');
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/destination", destinationRouter);
+app.use("/message", messageRouter);
 
 app.listen(5000);

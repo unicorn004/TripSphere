@@ -1,5 +1,4 @@
 const { addDestination, getAllDestinations } = require('../controllers/destinationsContoller')
-
 const express = require('express')
 
 const router = express.Router();
