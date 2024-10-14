@@ -2,11 +2,18 @@
 import React from 'react';
 
 const Home = () => {
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        // Call the logout endpoint on your server
+        await fetch('http://localhost:5000/logout', {
+            method: 'GET',
+            credentials: 'include', // Include cookies for session management
+        });
+        
         localStorage.clear();
-        // Logout logic
-        // window.open('http://localhost:5000/auth/google', '_self');
+        // Redirect to the login page
+        window.open('http://localhost:5173/', '_self');
     }
+    
     return (
         <div>
             <h1>Welcome Home!</h1>
