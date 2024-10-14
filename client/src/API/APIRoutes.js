@@ -1,6 +1,7 @@
 const host = import.meta.env.VITE_BACKEND_URL
 
 export const setCityEndpoint = `${host}/user/city`
+export const loginUserEndpoint = `${host}/user/login`
 export const getMessagesEndpoint = `${host}/message/get`
 export const addMessageEndpoint = `${host}/message/add`
 export const deleteChatsEndpoint = `${host}/message/delete`
