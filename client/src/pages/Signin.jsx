@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { loginUserEndpoint } from '../API/APIRoutes.js';
+import { signupUserEndpoint } from '../API/APIRoutes.js';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-const Login = () => {
-    const handleLogin = () => {
+const Signin = () => {
+    const handleSignup = () => {
         window.open('http://localhost:5000/auth/google', '_self');
     };
 
     const [userData, setUserData] = useState({
         email: '',
-        password: ''
+        name: '',
+        password: '',
+        city: ''
     });
 
     const navigate = useNavigate();
@@ -19,12 +21,12 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(loginUserEndpoint, userData, { withCredentials: true });
+            const response = await axios.post(signupUserEndpoint, userData, { withCredentials: true });
             if (response.data.success) {
                 alert(response.data.message);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
-                localStorage.setItem('auth-token', JSON.stringify(response.data.token));
-                navigate('/home');
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+                navigate('/login');
             }
         } catch (error) {
             console.log(error);
@@ -40,6 +42,13 @@ const Login = () => {
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <input
+                        type="text"
+                        placeholder='Enter your name'
+                        value={userData.name}
+                        onChange={(event) => setUserData({ ...userData, name: event.target.value })}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <input
                         type="email"
                         placeholder='Enter your email'
                         value={userData.email}
@@ -53,23 +62,30 @@ const Login = () => {
                         onChange={(event) => setUserData({ ...userData, password: event.target.value })}
                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
+                    <input
+                        type="text"
+                        placeholder='Enter city'
+                        value={userData.city}
+                        onChange={(event) => setUserData({ ...userData, city: event.target.value })}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
                     <button
                         type='submit'
                         className="w-full p-3 bg-indigo-600 text-white rounded-lg transition duration-300 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     >
-                        Login
+                        Sign up
                     </button>
-                    <p className='text-lg font-semibold text-center'>Don't have an account ? <Link to={'/'} className='text-blue-600'>Sign up</Link></p>
+                    <p className='text-lg font-semibold text-center'>Already have an account ? <Link to={'/login'} className='text-blue-600'>Login</Link></p>
                 </form>
                 <button
-                    onClick={handleLogin}
+                    onClick={handleSignup}
                     className="w-full mt-4 p-3 bg-red-600 text-white rounded-lg transition duration-300 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                 >
-                    Login with Google
+                    Sign up with Google
                 </button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Signin;

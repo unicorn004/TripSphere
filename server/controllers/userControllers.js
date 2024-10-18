@@ -2,7 +2,7 @@ const { User } = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const loginUser = async (request, response) => {
+const signupUser = async (request, response) => {
     try {
         const { name, email, password, city } = request.body;
         const existingUser = await User.findOne({ email });
@@ -27,7 +27,38 @@ const loginUser = async (request, response) => {
             user
         });
     } catch (error) {
-        console.log(error);
+        return response.status(500).json({
+            success: false,
+            message: 'Internal server error',
+        });
+    }
+}
+
+const loginUser = async (request, response) => {
+    try {
+        const { email, password } = request.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return response.status(400).json({
+                success: false,
+                message: 'Invalid email or password',
+            })
+        }
+        const validPassword = bcrypt.compare(password, user.password)
+        if (!validPassword) {
+            return response.status(400).json({
+                success: false,
+                message: 'Invalid email or password',
+            })
+        }
+        const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        return response.status(201).json({
+            success: true,
+            message: 'User logged in successfully',
+            token,
+            user
+        });
+    } catch (error) {
         return response.status(500).json({
             success: false,
             message: 'Internal server error',
@@ -60,4 +91,4 @@ const setUserCity = async (request, response) => {
     }
 }
 
-module.exports = { setUserCity, loginUser }
+module.exports = { setUserCity, loginUser, signupUser }
