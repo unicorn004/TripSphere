@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { createOrderEndpoint, verifyPaymentEndpoint } from '../API/APIRoutes'; 
 
 const Payment = () => {
+    const [amount, setAmount] = useState(0); // State for amount
+
     const handlePayment = async (e) => {
         e.preventDefault();
 
         try {
-            // Step 1: Create a payment order
-            const response = await axios.post(createOrderEndpoint);
-            const { amount, currency, id: orderId } = response.data;
+            // Step 1: Create a payment order with the specified amount
+            const response = await axios.post(createOrderEndpoint, { amount });
+            const { amount: orderAmount, currency, id: orderId } = response.data;
 
             // Step 2: Set up Razorpay options
             const options = {
                 key: "rzp_test_jG8LkhdU5nzzoG", // Your Razorpay Key ID
-                amount: amount, // Amount in currency subunits
+                amount: orderAmount, // Amount in currency subunits
                 currency: currency,
                 name: "TripSphere",
                 description: "Test Transaction",
@@ -30,7 +32,7 @@ const Payment = () => {
                         });
                         
                         // Redirect or show success message based on verification result
-                        if (verificationResponse.data.success) {
+                        if (verificationResponse.data.status === 'success') {
                             window.location.href = `/order/success/${response.razorpay_order_id}`;
                         } else {
                             alert('Payment verification failed.');
@@ -69,6 +71,13 @@ const Payment = () => {
     return (
         <div>
             <h1 className="text-2xl font-bold">Complete Your Payment</h1>
+            <input 
+                type="number" 
+                placeholder="Enter amount" 
+                value={amount} 
+                onChange={(e) => setAmount(e.target.value)} 
+                className="mt-4 p-2 border rounded" 
+            />
             <button className="paybtn mt-4 px-4 py-2 bg-yellow-400 rounded-md text-xl font-semibold" onClick={handlePayment}>
                 Pay Now
             </button>

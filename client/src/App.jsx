@@ -7,6 +7,7 @@ import Signin from './pages/Signin'
 import Login from './pages/Login'
 import Flight from './pages/Flight'
 import Payment from './pages/Payment'
+import OrderSuccess from './pages/OrderSuccess';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/chat" element={<Chat />} />
         <Route path="/flight" element={<Flight />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/order/success/:orderId" element={<OrderSuccess />} />
       </Routes>
     </BrowserRouter>
   )
