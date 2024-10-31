@@ -6,6 +6,7 @@ import Chat from './pages/Chat'
 import Signin from './pages/Signin'
 import Login from './pages/Login'
 import Flight from './pages/Flight'
+import Payment from './pages/Payment'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/flight" element={<Flight />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </BrowserRouter>
   )

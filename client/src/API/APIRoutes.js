@@ -8,3 +8,5 @@ export const getMessagesEndpoint = `${host}/message/get`
 export const addMessageEndpoint = `${host}/message/add`
 export const deleteChatsEndpoint = `${host}/message/delete`
 export const geminiApi = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key"
+export const createOrderEndpoint = `${host}/payment/create/orderId`
+export const verifyPaymentEndpoint = `${host}/payment/api/payment/verify`

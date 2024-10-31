@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../assets/hero.jpg'
