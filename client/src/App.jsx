@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Chat from './pages/Chat'
 import Signin from './pages/Signin'
 import Login from './pages/Login'
+import Flight from './pages/Flight'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/city" element={<City />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/flight" element={<Flight />} />
       </Routes>
     </BrowserRouter>
   )
