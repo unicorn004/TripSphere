@@ -33,11 +33,13 @@ const authRouter = require("./routes/auth");
 const userRouter = require('./routes/userRoutes');
 const destinationRouter = require('./routes/destinationRoutes');
 const messageRouter = require('./routes/messageRoutes');
+const paymentRouter = require('./routes/payment');
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/destination", destinationRouter);
 app.use("/message", messageRouter);
+app.use("/payment", paymentRouter);
 
-app.listen(5000);
+app.listen(5000, () => console.log("Server running on port 5000"));

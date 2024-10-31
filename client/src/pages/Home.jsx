@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import Hero from '../assets/hero.jpg'
+import Hero from '/assets/hero.jpg'
 import axios from 'axios'
 import { getCitiesEndpoint } from '../API/APIRoutes';
 import { AiFillStar } from 'react-icons/ai';

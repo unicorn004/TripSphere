@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { loginUserEndpoint } from '../API/APIRoutes.js';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '/assets/logo.png';
 
 const Login = () => {
     const handleLogin = () => {
