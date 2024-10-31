@@ -22,16 +22,22 @@ const Header = () => {
                     <Link to="/" className="text-yellow-500">TravelSphere</Link>
                 </div>
                 <div className="flex space-x-6">
-                    <Link to="/" className="text-yellow-500 text-xl font-semibold">
+                    <Link to="/home" className="text-yellow-500 text-xl font-bold">
                         Home
                     </Link>
-                    <Link to="/tours" className="text-yellow-500 text-xl font-semibold">
+                    <Link to="/tours" className="text-yellow-500 text-xl font-bold">
                         Tours
                     </Link>
-                    <Link to="/about" className="text-yellow-500 text-xl font-semibold">
+                    <Link to="/flight" className="text-yellow-500 text-xl font-bold">
+                        Flights
+                    </Link>
+                    <Link to="/chat" className="text-yellow-500 text-xl font-bold">
+                        Elisa
+                    </Link>
+                    <Link to="/about" className="text-yellow-500 text-xl font-bold">
                         About
                     </Link>
-                    <Link to="/contact" className="text-yellow-500 text-xl font-semibold">
+                    <Link to="/contact" className="text-yellow-500 text-xl font-bold">
                         Contact
                     </Link>
                 </div>
