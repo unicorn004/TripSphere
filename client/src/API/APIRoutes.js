@@ -11,3 +11,4 @@ export const geminiApi = "https://generativelanguage.googleapis.com/v1beta/model
 export const createOrderEndpoint = `${host}/payment/create/orderId`
 export const verifyPaymentEndpoint = `${host}/payment/api/payment/verify`
 export const rapidApi = "https://booking-com18.p.rapidapi.com/stays/search?"
+export const getFlightsEndpoint = `${host}/flights`;
