@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Flight from './pages/Flight'
 import Payment from './pages/Payment'
 import OrderSuccess from './pages/OrderSuccess';
+import CityDetails from './pages/CityDetails'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/city" element={<City />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/city/:name" element={<CityDetails />} />
         <Route path="/flight" element={<Flight />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/order/success/:orderId" element={<OrderSuccess />} />

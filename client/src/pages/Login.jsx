@@ -4,9 +4,19 @@ import { loginUserEndpoint } from '../API/APIRoutes.js';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '/assets/logo.png';
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const Login = () => {
     const handleLogin = () => {
         window.open('http://localhost:5000/auth/google', '_self');
+        const userCookie = getCookie('user');
+        if (userCookie) {
+            localStorage.setItem('user', userCookie);
+        }
     };
 
     const [userData, setUserData] = useState({

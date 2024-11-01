@@ -7,12 +7,17 @@ import axios from 'axios'
 import { addMessageEndpoint, deleteChatsEndpoint, geminiApi, getMessagesEndpoint } from '../API/APIRoutes.js';
 
 const Chat = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const [user, setUser] = useState(null);
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
     const messageEndRef = useRef(null);
-
     useEffect(() => {
+        const getUser = () => {
+            const encodedUserData = localStorage.getItem('user');
+            const decodedUserData = decodeURIComponent(encodedUserData);
+            setUser(JSON.parse(decodedUserData));
+        }
+        getUser()
         const fetchMessages = async () => {
             try {
                 const response = await axios.get(getMessagesEndpoint, {
@@ -29,7 +34,8 @@ const Chat = () => {
             }
         }
         fetchMessages();
-    }, []);
+    }, [])
+    console.log(user);
 
     const [loading, setLoading] = useState(false);
     const sendMessageHandler = async (event) => {

@@ -11,6 +11,7 @@ import { MdOutlineTravelExplore } from "react-icons/md";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { GrUserExpert } from "react-icons/gr";
 import { MdFreeCancellation } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [cities, setCities] = useState([]);
@@ -61,7 +62,7 @@ const Home = () => {
                                         <p className='text-black mt-2 font-bold text-xl'>Rating: 4.5/5.0</p>
                                     </div>
                                     <div>
-                                        <button className='px-4 py-4 bg-yellow-400 rounded-md text-xl font-semibold'>See Details</button>
+                                        <Link to={`/city/${city.name}`}><button className='px-4 py-4 bg-yellow-400 rounded-md text-xl font-semibold'>See Details</button></Link>
                                     </div>
                                 </div>
                             </div>
