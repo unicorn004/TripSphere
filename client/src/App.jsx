@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/chat" element={<Chat />} />
         <Route path="/city/:name" element={<CityDetails />} />
         <Route path="/flight" element={<Flight />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/:price" element={<Payment />} />
         <Route path="/order/success/:orderId" element={<OrderSuccess />} />
       </Routes>
     </BrowserRouter>

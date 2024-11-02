@@ -106,7 +106,7 @@ const ToursDetails = ({ name, image, uniqueID }) => {
                                 </p>
                             </div>
                             <div>
-                                <Link to={'/home'}><button className='px-4 py-4 bg-yellow-400 rounded-md text-xl font-semibold'>Book Now</button></Link>
+                                <Link to={`/payment/${hotel.priceBreakdown.grossPrice.value.toFixed(0)}`}><button className='px-4 py-4 bg-yellow-400 rounded-md text-xl font-semibold'>Book Now</button></Link>
                             </div>
                         </div>
 

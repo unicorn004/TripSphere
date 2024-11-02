@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import {
-    FiBarChart,
-    FiChevronDown,
     FiChevronsRight,
-    FiDollarSign,
     FiHome,
-    FiMonitor,
-    FiShoppingCart,
-    FiTag,
-    FiUsers,
 } from "react-icons/fi";
 import { MdFlight } from "react-icons/md";
 import { MdCardTravel } from "react-icons/md";
@@ -48,7 +41,7 @@ const Sidebar = () => {
                         open={open}
                     />
                 </Link>
-                <Link to={'/home'}>
+                <Link to={'/tours'}>
                     <Option
                         Icon={MdCardTravel}
                         title="Tours"
@@ -57,7 +50,7 @@ const Sidebar = () => {
                         open={open}
                     />
                 </Link>
-                <Link to={'/home'}>
+                <Link to={'/flight'}>
                     <Option
                         Icon={MdFlight}
                         title="Flights"

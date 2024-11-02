@@ -38,7 +38,7 @@ const Signin = () => {
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
                 <div className="flex items-center mb-6">
                     <img src={logo} alt="TripSphere Logo" className="h-12 mr-3" />
-                    <h1 className="text-2xl font-bold text-gray-700">Welcome to TripSphere!</h1>
+                    <h1 className="text-2xl font-bold text-gray-700">Welcome to TravelSphere!</h1>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <input
