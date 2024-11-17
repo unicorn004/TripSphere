@@ -8,24 +8,24 @@ router.get('/google', passport.authenticate("google", {
 }));
 
 router.get('/google/callback', passport.authenticate("google", {
-    failureRedirect: "/", 
+    failureRedirect: "/",
 }), async (req, res) => {
     const { email } = req.user;
     const existingUser = await User.findOne({ email });
-    
+
     if (existingUser) {
         res.cookie('user', JSON.stringify(existingUser), { httpOnly: false });
-        return res.redirect('http://localhost:5173/home'); 
+        return res.redirect(`${process.env.FRONTEND_URL}/home`);
     }
 
     res.cookie('user', JSON.stringify(req.user), { httpOnly: false });
-    res.redirect('http://localhost:5173/city');
+    res.redirect(`${process.env.FRONTEND_URL}/city`);
 });
 
 router.get('/logout', (req, res, next) => {
     req.logout((err) => {
         if (err) { return next(err); }
-        res.redirect('http://localhost:5173/');
+        res.redirect(`${process.env.FRONTEND_URL}/`);
     });
 });
 
